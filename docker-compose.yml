@@ -1,0 +1,22 @@
+version: "3"
+services:
+
+  server:
+    image: sonarqube:8.7.0-community
+    container_name: ${APP_NAME}_server
+    restart: unless-stopped
+    volumes:
+      - ./data/sonarqube/conf:/opt/sonarqube/conf
+      - ./data/sonarqube/data:/opt/sonarqube/data
+      - ./data/sonarqube/extensions:/opt/sonarqube/extensions
+      - ./data/sonarqube/lib/bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+    ports:
+      - 127.0.0.1:${APP_PORT}:9000
+    env_file:
+      - .env
+      - .env.local
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "10"

@@ -1,0 +1,1 @@
+0	*	*	*	*	root	bash /home/www/sonarqube.test/www/bin/console.sh dump >/dev/null 2>&1
